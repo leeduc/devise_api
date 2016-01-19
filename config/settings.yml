@@ -1,0 +1,9 @@
+domain: localhost:3000
+app_name: Storage Space
+address: Tầng 1&6, Tòa nhà Agribank, 228 đường 2/9, Đà Nẵng, Việt Nam
+token_secret: my$ecretK3y
+email:
+  support: ducl@greenglobal.vn
+  admin: ducl@greenglobal.vn
+  send_mail: ducl@greenglobal.vn
+  send_pass: 112299001290

@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="description" content="Build authentic relationships online and offline by communicating your ideas." />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style type="text/css">
+        @media only screen and (max-width: 480px) {
+            .main {width: 100% !important;}
+        }
+
+        img {
+            outline: none; text-decoration: none; -ms-interpolation-mode: bicubic;
+        }
+        body {
+            margin: 0; padding: 0;
+        }
+        body {
+        font-family: "Arial","Helvetica",sans-serif; background: #FFFFFF; color: #222222; width: 100% !important; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px;
+        }
+        img {
+            border: none; outline: none; text-decoration: none; -ms-interpolation-mode: bicubic;
+        }
+    </style>
+</head>
+<body style="-ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; background: #FFFFFF; color: #222222; font-family: 'Arial','Helvetica',sans-serif; margin: 0px; padding: 0px; width: 100% !important" bgcolor="#FFFFFF">
+    <table width="100%" cellspacing="0" cellpadding="0" border="0" class="body-wrap" style="background: #fff; border-collapse: collapse; mso-table-lspace: 0pt; mso-table-rspace: 0pt; padding: 10px; width: 100%" bgcolor="#fff">
+        <tr>
+            <td align="center" class="container" style="border-collapse: collapse; padding: 10px">
+                <table width="600" cellspacing="0" cellpadding="0" border="0" align="center" bgcolor="white" class="main" style="-webkit-border-radius: 3px; background: #FFF; border-collapse: separate; border-radius: 3px; border: 2px solid #dfe1e1; margin: 0 auto; max-width: 600px !important; mso-table-lspace: 0pt; mso-table-rspace: 0pt; text-align: left; width: 600px">
+                    <tr>
+                        <td class="content-wrap" align="left" style="border-collapse: collapse; padding: 40px 35px">
+                            <table width="100%" border="0" cellspacing="0" cellpadding="0" style="border-collapse: collapse; mso-table-lspace: 0pt; mso-table-rspace: 0pt">
+                                <tr>
+                                    <td align="left" style="border-collapse: collapse">
+                                        <table width="50%" border="0" cellspacing="0" cellpadding="0" align="left" valign="top" style="border-collapse: collapse; mso-table-lspace: 0pt; mso-table-rspace: 0pt">
+                                            <tr>
+                                                <td class="col-logo-text" valign="top" style="border-collapse: collapse; padding: 0 0 37px; width: 117px">
+                                                    <a target="_blank" href="{{rootUrl}}" style="color: #000; display: block; text-decoration: none">
+                                                        <img width="117" height="30" src="http://i.imgur.com/xSPK9uo.png" alt="Ideapod" class="logo-text" style="-ms-interpolation-mode: bicubic; border: none; height: 30px; outline: none; text-decoration: none; width: 117px" />
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                    <td align="right" style="border-collapse: collapse">
+                                        <table width="50%" border="0" cellspacing="0" cellpadding="0" align="right" valign="top" style="border-collapse: collapse; mso-table-lspace: 0pt; mso-table-rspace: 0pt">
+                                            <tr>
+                                                <td class="col-logo-image" valign="top" align="right" style="border-collapse: collapse; padding: 0 0 37px; text-align: right">
+                                                    <a target="_blank" href="{{rootUrl}}" style="color: #000; text-decoration: none">
+                                                        <img width="30" height="30" src="https://email-static.ideapod.com/v1/images/logo-icon.png" alt="Ideapod" class="logo-image" style="-ms-interpolation-mode: bicubic; border: none; height: 30px; outline: none; text-decoration: none; width: 30px" />
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <!-- Begin Content -->
+
+                                <%= yield %>
+
+                                <!-- End content -->
+                                <tr>
+                                    <td class="footer-email" colspan="2" style="border-collapse: collapse; border-top-color: #E3E6E9; border-top-style: solid; border-top-width: 1px; color: #7F8893; font-size: 14px; padding-top: 15px">
+                                        <table width="100%" border="0" cellspacing="0" cellpadding="0" style="border-collapse: collapse; mso-table-lspace: 0pt; mso-table-rspace: 0pt">
+                                            <tr>
+                                                <td class="bold" style="border-collapse: collapse; font-weight: bold">Sent from <%= Settings.app_name %>.</td>
+                                            </tr>
+                                            <% if @email.present? %>
+                                            <tr>
+                                                <td class="footer-content-block" style="border-collapse: collapse; line-height: 18px; padding-top: 13px">This message was sent to <a href="#" class="link-color" style="color: #1a8dee; text-decoration: none"><%= @email %></a>.</td>
+                                            </tr>
+                                            <% end %>
+                                            <tr>
+                                                <td class="footer-content-block" style="border-collapse: collapse; line-height: 18px; padding-top: 13px"><%= Settings.address %></td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>
