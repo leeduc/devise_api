@@ -3,7 +3,8 @@ rvm:
   - 2.3.0
   - ruby-head
 before_install:
-  - gem install bundler
+  - gem update --system
+  - gem --version
 before_script:
   - bundle update
 cache: bundler
