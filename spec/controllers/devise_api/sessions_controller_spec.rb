@@ -1,12 +1,13 @@
 describe DeviseApi::SessionsController, type: :controller do
   include Devise::TestHelpers
+  include Requests::JsonHelpers
   routes { DeviseApi::Engine.routes }
   describe 'POST #create' do
     it 'fails, empty email input' do
       @request.env['devise.mapping'] = Devise.mappings[:user]
       post :create, format: :json
       expect(response).to have_http_status(400)
-      body = JSON.parse(response.body)
+      body = json(response.body)
       expect(body['status']).to eq('error')
       expect(body['errors']['email'][0]).to eq('can not be blank.')
     end
@@ -15,7 +16,7 @@ describe DeviseApi::SessionsController, type: :controller do
       @request.env['devise.mapping'] = Devise.mappings[:user]
       post :create, email: 'abc@example.com', format: :json
       expect(response).to have_http_status(400)
-      body = JSON.parse(response.body)
+      body = json(response.body)
       expect(body['status']).to eq('error')
       expect(body['errors']['password'][0]).to eq('can not be blank.')
     end
@@ -25,7 +26,7 @@ describe DeviseApi::SessionsController, type: :controller do
       user = FactoryGirl.create(:user)
       post :create, email: user.email, password: 123_456, format: :json
       expect(response).to have_http_status(403)
-      body = JSON.parse(response.body)
+      body = json(response.body)
       expect(body['status']).to eq('error')
       expect(body['errors']).to eq('User not active.')
     end
@@ -38,7 +39,7 @@ describe DeviseApi::SessionsController, type: :controller do
       post :create, email: user.email, password: 123_456, format: :json
 
       expect(response).to have_http_status(200)
-      body = JSON.parse(response.body)
+      body = json(response.body)
       expect(body['status']).to eq('success')
       content = body['entities'][0]
       expect(content['id']).to eq(user.id)

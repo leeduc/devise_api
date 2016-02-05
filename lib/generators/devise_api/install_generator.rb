@@ -1,9 +1,13 @@
 module DeviseApi
   class InstallGenerator < Rails::Generators::Base
-    source_root File.expand_path('../templates', __FILE__)
+    source_root File.expand_path('../../templates', __FILE__)
 
-    def create_initializer_file
-      copy_file 'devise_api.rb', 'config/initializers/devise_api.rb'
+    def copy_initializer
+      template 'devise_api.rb', 'config/initializers/devise_api.rb'
+    end
+
+    def copy_migration
+      directory 'migrations', 'db/migrate'
     end
   end
 end
