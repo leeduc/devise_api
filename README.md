@@ -3,4 +3,4 @@
 [![security](https://hakiri.io/github/leeduc/devise_api/master.svg)](https://hakiri.io/github/leeduc/devise_api/master)
 
 
-Use devise gem respond to json
+Use devise gem respond to json.
