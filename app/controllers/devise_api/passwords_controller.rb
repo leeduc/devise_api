@@ -47,7 +47,7 @@ module DeviseApi
     def update
       fields = pass_params
 
-      if defined? (@headerToken['reset_pass']) || @resource.valid_password?(fields[:current_password])
+      unless _header_token.key?('reset_pass') || @resource.valid_password?(fields[:current_password])
         return rendor_current_password_is_wrong
       end
 

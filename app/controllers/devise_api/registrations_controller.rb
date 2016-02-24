@@ -11,7 +11,7 @@ module DeviseApi
       @token = AuthHelper.generate_token @resource
       render_create_success
     rescue ActiveRecord::RecordNotUnique
-      @resource.errors.add(:Email, 'already exists')
+      @resource.errors.add(:email, 'already exists')
       render_create_error_email_already_exists
     rescue
       render_create_error

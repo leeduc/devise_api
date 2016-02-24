@@ -1,19 +1,19 @@
 module DeviseApi
   module AuthHelper
     def self.extra_token(token = nil)
-      @token = token
+      Thread.current[:token] = token
       begin
-        @header_token = JWT.decode(@token, DeviseApi.token_secretkey, algorithm: 'H256')
-        @header_token = @header_token[0] if @header_token[0].present?
+        Thread.current[:header_token] = JWT.decode(Thread.current[:token], DeviseApi.token_secretkey, algorithm: 'H256')
+        Thread.current[:header_token] = Thread.current[:header_token][0] if Thread.current[:header_token][0].present?
       rescue
         raise CheckTokenException, 'Forbidden'
       end
 
-      @detoken = Jwt.check_token(@header_token['uid'])
+      Thread.current[:detoken] = Jwt.check_token(Thread.current[:header_token]['uid'])
 
-      fail CheckTokenException, 'Forbidden' if @detoken.nil?
+      fail CheckTokenException, 'Forbidden' if Thread.current[:detoken].nil?
 
-      user = User.find_by email: @detoken.email
+      user = User.find_by email: Thread.current[:detoken].email
 
       fail CheckTokenException, 'Forbidden' unless user
 
@@ -32,6 +32,18 @@ module DeviseApi
       )
 
       token
+    end
+
+    def _header_token
+      Thread.current[:header_token]
+    end
+
+    def _token
+      Thread.current[:token]
+    end
+
+    def _detoken
+      Thread.current[:detoken]
     end
 
     class CheckTokenException < Exception
