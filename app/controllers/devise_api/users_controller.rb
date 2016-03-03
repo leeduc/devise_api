@@ -1,6 +1,6 @@
 module DeviseApi
   class UsersController < DeviseApi::ApplicationController
-    before_action :check_token, except: [:show, :facebook_sign_up]
+    before_action :check_token, except: [:facebook_sign_up]
     before_action :set_user, only: [:show, :update, :change_password]
 
     def show
@@ -35,10 +35,10 @@ module DeviseApi
                first_name: name.shift, last_name: name.join(' '),
                password: password, password_confirmation: password }
 
-      @resource = User.find_oauth(data)
+      @resource = resource_class.find_oauth(data)
 
       unless @resource.present?
-        @resource = User.new(data)
+        @resource = resource_class.new(data)
         return render_create_error unless @resource.save
       end
 
@@ -50,7 +50,7 @@ module DeviseApi
     # DELETE /users/:id.:format
     def delete_token
       # authorize! :delete, @resource
-      @resource = User.find(params[:id])
+      @resource = resource_class.find(params[:id])
       @resource.destroy
       render template: 'users/show'
     end
@@ -75,7 +75,7 @@ module DeviseApi
     private
 
       def set_user
-        @resource = User.find(params[:id])
+        @resource = resource_class.find(params[:id])
 
         return render 'layouts/error', status: :forbidden, locals: {
           object: OpenStruct.new(message: 'Forbidden')

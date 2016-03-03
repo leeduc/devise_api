@@ -1,5 +1,5 @@
 module DeviseApi
-  class SessionsController < Devise::SessionsController
+  class SessionsController < DeviseApi::ApplicationController
     before_action :check_token, except: [:create]
 
     def create

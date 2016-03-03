@@ -11,7 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160111071637) do
+ActiveRecord::Schema.define(version: 20160301082039) do
+
+  create_table "device_tokens", force: :cascade do |t|
+    t.text    "token",                           null: false
+    t.string  "device",  limit: 3, default: "0", null: false
+    t.integer "user_id",                         null: false
+  end
 
   create_table "jwts", force: :cascade do |t|
     t.string   "uid",                     null: false
@@ -33,19 +39,18 @@ ActiveRecord::Schema.define(version: 20160111071637) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.string   "first_name",                                    null: false
-    t.string   "last_name",                                     null: false
-    t.string   "facebook_id"
-    t.integer  "status",                 limit: 2
-    t.datetime "created_at",                                    null: false
-    t.datetime "updated_at",                                    null: false
     t.string   "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string   "unconfirmed_email"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "facebook_id"
+    t.integer  "status",                 limit: 2
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
-  add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
   add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
 
